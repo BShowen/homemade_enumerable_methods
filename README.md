@@ -13,7 +13,3 @@ I am following along with [The Odin Project](https://www.theodinproject.com/cour
 >Test your #my_inject by creating a method called #multiply_els which multiplies all the elements of the array together by using #my_inject, e.g. multiply_els([2,4,5]) #=> 40
 >Modify your #my_map method to take a proc instead.
 >Modify your #my_map method to take either a proc or a block. It won’t be necessary to apply both a proc and a block in the same #my_map call since you could get the same effect by chaining together one #my_map call with the block and one with the proc. This approach is also clearer, since the user doesn’t have to remember whether the proc or block will be run first. So if both a proc and a block are given, only execute the proc.
-
-## Quick Tips:
-
-Remember yield and the #call method.
