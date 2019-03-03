@@ -67,12 +67,24 @@ module Enumerable
         end
         item_count
     end
-
+    
+    #The my_map method will accept a block. 
     def my_map 
         new_array = []
         i = 0
         while i < self.length
             new_array << yield(self[i])
+            i += 1
+        end
+        new_array
+    end
+
+    #The my_map_proc method will work the same as the my_map method. However it will work with a proc instead.
+    def my_map_proc &proc_to_block
+        new_array = []
+        i = 0
+        while i < self.length
+            new_array << proc_to_block.call(self[i])
             i += 1
         end
         new_array
@@ -93,5 +105,7 @@ module Enumerable
         end
         accumulator 
     end
+
+
 
 end 
