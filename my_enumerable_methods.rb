@@ -24,4 +24,20 @@ module Enumerable
         end
         selected
     end
+
+    def my_all?
+        status = true
+        i = 0
+        while i < self.length
+            if yield(self[i]) == true 
+                i += 1
+                next
+            else
+                status = !status
+                break
+            end
+        end
+        status
+    end
+
 end
