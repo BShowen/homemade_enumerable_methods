@@ -40,4 +40,18 @@ module Enumerable
         status
     end
 
-end
+    def my_none? #{|item | item == 3 }
+        status = true
+        i = 0
+        while i < self.length
+            if yield(self[i])
+                status = !status
+                break
+            else
+                i += 1
+            end
+        end 
+        status
+    end
+
+end 
