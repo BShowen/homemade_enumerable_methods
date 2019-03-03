@@ -14,4 +14,14 @@ module Enumerable
             i += 1
         end
     end
+
+    def my_select
+        selected = []
+        i = 0
+        while i < self.length
+            selected << self[i] if ( yield(self[i]) == true )
+            i += 1
+        end
+        selected
+    end
 end
