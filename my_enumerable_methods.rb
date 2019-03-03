@@ -78,4 +78,20 @@ module Enumerable
         new_array
     end
 
+    def my_inject accumulator = nil 
+        i = 0
+        accumulator = self[i] if accumulator == nil 
+        while i < self.length 
+            if accumulator == self[0] && i == 0
+                i += 1
+                accumulator = yield(accumulator,self[i]) 
+                i += 1
+            else
+                accumulator = yield(accumulator,self[i])
+                i += 1
+            end
+        end
+        accumulator 
+    end
+
 end 
