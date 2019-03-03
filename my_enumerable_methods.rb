@@ -79,13 +79,22 @@ module Enumerable
         new_array
     end
 
-    #The my_map_proc method will work the same as the my_map method. However it will work with a proc instead.
-    def my_map_proc &proc_to_block
+    #The my_proc_map method will work the same as the my_map method. However it will work with a proc instead.
+    def my_proc_map &proc_to_block
         new_array = []
         i = 0
         while i < self.length
             new_array << proc_to_block.call(self[i])
             i += 1
+        end
+        new_array
+    end
+
+    #The proc_and_block_map will accept either a block or a proc. If both block and proc are probvided then only the proc is used. 
+    def proc_and_block_map &proc
+        new_array = []
+        for i in self
+            new_array << yield(i)
         end
         new_array
     end
