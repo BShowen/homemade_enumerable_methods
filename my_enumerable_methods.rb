@@ -54,4 +54,18 @@ module Enumerable
         status
     end
 
+    def my_count count = nil
+        if count
+            item_count = 0
+            i = 0
+            while i < self.length
+                item_count += 1 if self[i] == count 
+                i += 1
+            end
+        else
+            return self.length
+        end
+        item_count
+    end
+
 end 
