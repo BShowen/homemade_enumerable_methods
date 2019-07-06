@@ -45,11 +45,15 @@ module Enumerable
         status
     end
 
-    def my_count count = nil
+    def my_count(count = nil)
+        item_count = 0
         if count
-            item_count = 0
             for item in self
                 item_count += 1 if item == count 
+            end
+        elsif block_given?
+            for i in self
+                yield(i) ? item_count += 1 : nil
             end
         else
             return self.length
