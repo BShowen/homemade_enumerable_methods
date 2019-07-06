@@ -20,12 +20,24 @@ RSpec.describe Enumerable do
     end
 
     context "my_none?" do
-        it "returns true if the block never returns true" do
+        it "returns true if the block always returns false" do
             expect(arr.my_none? { |i| i > 20 }).to eql(true)
         end
         it "returns false if the block returns true" do
             expect(arr.my_none? { |i| i > 5 }).not_to eql(true)
         end
+    end
+
+    context "my_count" do 
+        it "returns the number of items in an array" do
+            expect(arr.my_count).to eql(10)
+        end
+        it "counts how many of a provided item are in the array" do
+            expect([1,2,3,4,3,2,1,3].my_count(3)).to eql(3)
+        end
+        it "counts how many items return true with a provided block" do 
+            expect(arr.my_count {|i| i % 2 == 0}).to eql(5)
+        end 
     end
 
 end
