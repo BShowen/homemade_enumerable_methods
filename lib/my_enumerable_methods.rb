@@ -88,20 +88,36 @@ module Enumerable
         new_array
     end
 
-    def my_inject accumulator = nil 
-        i = 0
-        accumulator = self[i] if accumulator == nil 
-        while i < self.length 
-            if accumulator == self[0] && i == 0
-                i += 1
-                accumulator = yield(accumulator,self[i]) 
-                i += 1
-            else
-                accumulator = yield(accumulator,self[i])
-                i += 1
+    def my_inject(accumulator = nil) 
+        case accumulator
+        when Integer, NilClass
+            index = 0 
+            accumulator = self[index] if(accumulator == nil) 
+            while(index < self.length) 
+                if(accumulator == self[0] && index == 0)
+                    index += 1
+                    accumulator = yield(accumulator,self[index]) 
+                    index += 1
+                else
+                    accumulator = yield(accumulator,self[index])
+                    index += 1
+                end
             end
+            accumulator 
+        when Symbol
+            if accumulator == :+
+                my_inject{|sum,n| sum + n}
+            elsif accumulator == :-
+                my_inject{|sum,n| sum - n}
+            elsif accumulator == :*
+                my_inject{|sum,n| sum * n}
+            elsif accumulator == :/
+                my_inject{|sum,n| sum / n}
+            end
+        else
+            puts "something went wrong"
+            return nil
         end
-        accumulator 
     end
     
 end 
